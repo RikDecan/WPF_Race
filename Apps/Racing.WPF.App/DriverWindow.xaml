@@ -1,0 +1,27 @@
+﻿<Window x:Class="Generic.Host.WPF.App.DriverWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Racing.WPF.App"
+        mc:Ignorable="d"
+        Title="Driver" Height="150" Width="400" Closing="Window_Closing">
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Voornaam:"/>
+        <TextBox Name="DriverFirstNameTb" Grid.Row="0" Grid.Column="1" MinWidth="50"></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Achternaam:"/>
+        <TextBox Name="DriverLastNameTb" Grid.Row="1" Grid.Column="1" MinWidth="50"></TextBox>
+
+        <Button Grid.Row="2" Grid.Column="1" Name="OkBtn" Content="OK" HorizontalAlignment="Right" Click="OkBtn_Click"/>
+    </Grid>
+</Window>

@@ -1,0 +1,145 @@
+﻿<Window x:Class="Generic.Host.WPF.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:langs="clr-namespace:Racing.WPF.App.Languages"
+xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Regular"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     Background="LightCyan"
+     FontFamily="{DynamicResource MaterialDesignFont}"  
+        mc:Ignorable="d"
+        Title="{x:Static langs:Translations.MainWindow}" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_File">
+                    <MenuItem Header="_New" Click="NewClick" />
+                    <MenuItem Header="_Open" />
+                    <MenuItem Header="_Save" />
+                    <Separator />
+                    <MenuItem Header="_Exit" Click="ExitClick" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <TabControl Grid.Row="1" Grid.ColumnSpan="2">
+            <!-- Collapsed: weggeborgen -->
+
+            <TabItem Header="Races">
+                <materialDesign:Card Padding="32" Margin="16">
+                    <DataGrid Name="RacesDg" AutoGenerateColumns="False">
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="RacesDg_Row_DoubleClick"/>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Naam" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Start Tijd" Binding="{Binding StartTime}" />
+                            <DataGridTextColumn Header="Eind Tijd" Binding="{Binding StopTime}" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </materialDesign:Card>
+            </TabItem>
+
+
+            <TabItem Header="User Types">
+                <materialDesign:Card Padding="32" Margin="16">
+                    <DataGrid Name="UserTypesDg" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding UserTypeId}"/>
+                            <DataGridTextColumn Header="Naam" Binding="{Binding Name}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </materialDesign:Card>
+            </TabItem>
+            <TabItem Header="Joined Users">
+                <materialDesign:Card Padding="32" Margin="16">
+                    <DataGrid Name="JoinedUsersDg" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Voornaam" Binding="{Binding FirstName}"/>
+                            <DataGridTextColumn Header="Achternaam" Binding="{Binding LastName}"/>
+                            <DataGridTextColumn Header="Naam" Binding="{Binding Type}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </materialDesign:Card>
+            </TabItem>
+            <TabItem Header="Users">
+                <materialDesign:Card Padding="32" Margin="16">
+                    <DataGrid Name="UsersDg" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Voornaam" Binding="{Binding FirstName}" />
+                            <DataGridTextColumn Header="Achternaam" Binding="{Binding LastName}" />
+                            <DataGridTextColumn Header="Paswoord" Binding="{Binding Password}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </materialDesign:Card>
+                
+            </TabItem>
+            <TabItem Header="Drivers">
+                <materialDesign:Card Padding="32" Margin="16">
+                    <DataGrid Name="DriversDg" AutoGenerateColumns="False">
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="DriversDg_Row_DoubleClick"/>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn></DataGridCheckBoxColumn>
+                            <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}" />
+                            <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+                            <DataGridTextColumn Header="Call Sign" Binding="{Binding CallSign}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </materialDesign:Card>
+            </TabItem>
+            <TabItem Header="Cars">
+                <materialDesign:Card Padding="32" Margin="16">
+                    <DataGrid Name="CarsDg" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding CarId}"/>
+                            <DataGridTextColumn Header="Naam" Binding="{Binding Naam}"/>
+                            <DataGridTextColumn Header="Maximale Snelheid" Binding="{Binding MaximaleSnelheid}" />
+                            <DataGridTextColumn Header="CC" Binding="{Binding Cc}"/>
+                            <DataGridTextColumn Header="Registratiedatum" Binding="{Binding DatumRegistratie}"/>
+                            <DataGridTextColumn Header="Driver ID" Binding="{Binding DriverId}"/>
+                        </DataGrid.Columns>
+                        <!-- Move the EventSetter here, outside of ItemContainerStyle -->
+                        <DataGrid.ItemContainerStyle>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="CarsDg_Row_DoubleClick"/>
+                            </Style>
+                        </DataGrid.ItemContainerStyle>
+                    </DataGrid>
+                </materialDesign:Card>
+            </TabItem>
+
+
+        </TabControl>
+        <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <StatusBar DockPanel.Dock="Bottom">
+                <StatusBarItem>
+                    <TextBlock Name="StatusBarTxt" />
+                </StatusBarItem>
+            </StatusBar>
+        </DockPanel>
+
+        <Button Grid.Row="2" Grid.Column="1" Name="LogInBtn" Content="Log In" HorizontalAlignment="Right" Click="LogInBtn_Click"/>
+     
+
+    </Grid>
+</Window>
